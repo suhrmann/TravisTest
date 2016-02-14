@@ -1,2 +1,2 @@
-# TarvisTest
-Ein Test repo für Tarvis-CI undso.
+# TravisTest
+Ein Test repo für Travis-CI undso.
