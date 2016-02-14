@@ -22,3 +22,11 @@ before_install:
   - echo yes | android update sdk --filter sysimg-18 --no-ui --force > /dev/null
   - echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
   - echo yes | android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
+
+deploy:
+  provider: releases
+  api_key:
+    secure: NPDb94FTSSDWZEhlSk/uVAAtyQrcPb9KToi2aRl0r0NwENxUq2LP3M4l/oYlWg4LwpnwGXB5rEpcUFKi2aQbWZtZDq6CHbCuQSxmW+nn2e8tXMJN9qJgRR5DUV4ZVPMSPvYTu+hPbdjIBM9cjoKI2UachO3/1+XC+KDVEeLr0CjMlmqnsa2JLyF5Fn1jlIZEeXA1XwNITj4H3Yd3hOybHVS/KHOgEmvnclaMxSjX6/0ESGqt3ZsmmsoJS0gpr9Pw2OWF7yIwzTFah3dwe6UWCEGA4W+yuPI1AkExdRDQgUrkJ+R3avTRgLymQ+hZMQwcP3K60qXuCNFjBz8/KsYpT8wBHruyheo7+nT0xl4Czu5iR6HL213UMVP3k0rGD25XrDQdxnOBL1O9kH6QuTek19RV0fK9o7a+Rh0Y+6furfz9g17GPkdLzWoVme4AITnim4YpDJ+k1TQg2I44u98MmQjfW7wC6Gq5SnLXYltrvHueounkzNmUESWt/lG7sCunlxVBn1xSWayxdfTsWOsQA67ncYArmnz86P+WK/ptjEVjD4UMeKjn5oMW5/KEzjw5e65f49uEz8xCrlzxq6usTnyBgo0X2vorvsYZy34vISOeXL/OpsmvnvKyL8SEcfceX8/wq5tjLu3cY+2v43fDnAJF00/Bc3qMlkpHQSVJ/hc=
+  file: app\build\outputs\apk\app-debug.apk
+  on:
+    repo: Vadammt/TarvisTest
