@@ -49,6 +49,7 @@ deploy:
     all_branches: true
 branches:
   except:
+    - master
     - /^*-v[0-9]/
 env:
   global:
