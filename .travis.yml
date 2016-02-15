@@ -23,6 +23,7 @@ before_install:
   - echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
   - echo yes | android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
 
+# Following this: http://stackoverflow.com/a/28230711/1700776
 deploy:
   provider: releases
   api_key:
@@ -31,4 +32,9 @@ deploy:
   skip_cleanup: true
   on:
     repo: Vadammt/TravisTest
-    tags: true
+    tags: false
+    all_branches: true
+
+branches:
+  except:
+    - /^*-v[0-9]/
