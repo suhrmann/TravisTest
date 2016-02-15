@@ -26,6 +26,11 @@ before_install:
 # Now using this: https://github.com/Stevie-Ray/apache-nginx-referral-spam-blacklist/blob/master/.travis.yml
 # Based on: http://stackoverflow.com/a/28230711/1700776
 before_deploy:
+  # rename apk
+  - export OLD_APK=app/build/outputs/apk/app-release-unsigned.apk
+  - export NEW_APK=app/build/outputs/apk/app-release-unsigned.apk
+  - mv  $OLD_APK $NEW_APK
+  # commit tags
   - git config --global user.email "builds@travis-ci.com"
   - git config --global user.name "Travis CI"
   - export GIT_TAG=$TRAVIS_BRANCH-0.1.$TRAVIS_BUILD_NUMBER
@@ -37,7 +42,7 @@ deploy:
   provider: releases
   api_key:
     secure: ${GH_TOKEN}
-  file: app/build/outputs/apk/app-release-unsigned.apk
+  file: $NEW_APK
   skip_cleanup: true
   on:
     tags: false
