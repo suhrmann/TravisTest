@@ -28,7 +28,7 @@ before_install:
 before_deploy:
   # rename apk
   - export OLD_APK=app/build/outputs/apk/app-release-unsigned.apk
-  - export NEW_APK=app/build/outputs/apk/app-release-unsigned.apk
+  - export NEW_APK=app/build/outputs/apk/socko.apk
   - mv  $OLD_APK $NEW_APK
   # commit tags
   - git config --global user.email "builds@travis-ci.com"
