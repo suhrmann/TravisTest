@@ -30,5 +30,9 @@ deploy:
   file: app\build\outputs\apk\app-release-unsigned.apk
   skip_cleanup: true
   on:
-    tags: true
+    tags: false
+    all_branches: true
 
+branches:
+  except:
+    - /^*-v[0-9]/
