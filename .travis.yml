@@ -27,10 +27,8 @@ deploy:
   provider: releases
   api_key:
     secure: pQC23emHybHkA9GRvinAnxyhAJ4dZKwuaBwbDaT2+drii2ZaqqFv6PAbgFKeyM6CTAXrwrkQi+TUOWPOaCtr8NnF09q9QDQf/5NWnReB6xE8Cq2bn5ZFKH6101vjWVvMYLt4UUFGfrRpWdlypAIrobt2UFABFSPCguqvdEZXeaPQf5TFSvCFXi9wguRbQEcQxV+1mUFFNLM8gHIW8S4E+I2roicGS+mLt02u6HNl8SX6EBT2X3BVHSPQJoiZQXVX9laladpuIdFzGuEcrvh8Y3IGBn4AqW0ZkvIp/JOREjfoKjxDGWNOKVjc/D3Eq9TB8OU3171Dqty4lUcosWibs8pd590pMxHcLOpybm4hsOh1xQQRzp+LEM2I5eT+nzlkPsG1mS6ctN+d8czj4KuXovrmwG206hrL2XrYiu5cLrdqiFl/xm7Ad7BrLcw9DQ8qlagHBQkBzty3/H7B1RhICD4aKFyr1YOP5YoggtSoBpRTr/UhUtM/4frhd+PN0H+6CcsRvudq+EasWCdXFUVUAwLew8wTFSs/PcGjqxUD2/WN6z0bJHTMIm3oUWU+QIbdNapQz27VEPhQ6Khqad8MSZ77GyaqfHu7s7sG21Zsn9iI4pZwjdNIRTjAqeX239Vs/fnNuNRbqG8viFAQ3lEr8+j8FVEZ2iB+RYBqh+Y/BLo=
-  file_glob: true
   file: app\build\outputs\apk\app-release-unsigned.apk
   skip_cleanup: true
   on:
     repo: Vadammt/TravisTest
     tags: true
-    all_branches: true
