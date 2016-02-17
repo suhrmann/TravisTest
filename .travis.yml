@@ -26,6 +26,7 @@ before_install:
 # Now using this: https://github.com/Stevie-Ray/apache-nginx-referral-spam-blacklist/blob/master/.travis.yml
 # Based on: http://stackoverflow.com/a/28230711/1700776
 before_deploy:
+
   # rename apk
   - export OLD_APK=app/build/outputs/apk/app-release-unsigned.apk
   - export NEW_APK=app/build/outputs/apk/socko.apk
@@ -45,14 +46,10 @@ deploy:
   file: $NEW_APK
   skip_cleanup: true
   on:
-    tags: false
-#    all_branches: true
+    - build
+    - tags: false
+
 branches:
-  only:
-    - builds
-#  except:
-#    - master
-#    - /^*-v[0-9]/
-env:
-  global:
-    secure: pQC23emHybHkA9GRvinAnxyhAJ4dZKwuaBwbDaT2+drii2ZaqqFv6PAbgFKeyM6CTAXrwrkQi+TUOWPOaCtr8NnF09q9QDQf/5NWnReB6xE8Cq2bn5ZFKH6101vjWVvMYLt4UUFGfrRpWdlypAIrobt2UFABFSPCguqvdEZXeaPQf5TFSvCFXi9wguRbQEcQxV+1mUFFNLM8gHIW8S4E+I2roicGS+mLt02u6HNl8SX6EBT2X3BVHSPQJoiZQXVX9laladpuIdFzGuEcrvh8Y3IGBn4AqW0ZkvIp/JOREjfoKjxDGWNOKVjc/D3Eq9TB8OU3171Dqty4lUcosWibs8pd590pMxHcLOpybm4hsOh1xQQRzp+LEM2I5eT+nzlkPsG1mS6ctN+d8czj4KuXovrmwG206hrL2XrYiu5cLrdqiFl/xm7Ad7BrLcw9DQ8qlagHBQkBzty3/H7B1RhICD4aKFyr1YOP5YoggtSoBpRTr/UhUtM/4frhd+PN0H+6CcsRvudq+EasWCdXFUVUAwLew8wTFSs/PcGjqxUD2/WN6z0bJHTMIm3oUWU+QIbdNapQz27VEPhQ6Khqad8MSZ77GyaqfHu7s7sG21Zsn9iI4pZwjdNIRTjAqeX239Vs/fnNuNRbqG8viFAQ3lEr8+j8FVEZ2iB+RYBqh+Y/BLo=
+  except:
+    # Ignore the Auto-tagged branches
+    - /^*-v[0-9]/
