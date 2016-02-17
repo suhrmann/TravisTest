@@ -46,8 +46,8 @@ deploy:
   file: $NEW_APK
   skip_cleanup: true
   on:
-    - build
-    - tags: false
+    branch: release
+    tags: false
 
 branches:
   except:
