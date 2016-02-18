@@ -19,7 +19,8 @@ before_install:
 - echo yes | android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
 before_deploy:
 # get project version
-- export VERSION=$(grep "versionName" build.gradle | awk '{print $2}')
+- export GRADLE_PATH=./app/build.gradle
+- export VERSION=$(grep "versionName" $GRADLE_PATH | awk '{print $2}')
 - export GIT_TAG=$TRAVIS_BRANCH-$VERSION.$TRAVIS_BUILD_NUMBER
 # rename APK file
 - export OLD_APK=app/build/outputs/apk/app-release-unsigned.apk
@@ -30,7 +31,7 @@ before_deploy:
 - git config --global user.name "Travis CI"
 - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
 - git push -q https://${GH_TOKEN}@github.com/Vadammt/TravisTest --tags
-- ls -aR
+# - ls -aR
 # debug...
 - echo version: $VERSION
 - echo tag: $GIT_TAG
