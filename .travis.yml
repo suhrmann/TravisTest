@@ -26,7 +26,7 @@ before_install:
 # Now using this: https://github.com/Stevie-Ray/apache-nginx-referral-spam-blacklist/blob/master/.travis.yml
 # Based on: http://stackoverflow.com/a/28230711/1700776
 before_deploy:
-  - echo GIT_TAG: ${GH_TOKEN}
+  - echo GIT_TAG: $GIT_TAG
 
   # rename apk
   - export OLD_APK=app/build/outputs/apk/app-release-unsigned.apk
