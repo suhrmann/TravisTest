@@ -2,52 +2,42 @@ language: android
 sudo: false
 android:
   components:
-    # Uncomment the lines below if you want to use the latest revision of Android SDK Tools
-    - platform-tools
-    - tools
-
-    - build-tools-23.0.2
-    - android-23
-
+  - platform-tools
+  - tools
+  - build-tools-23.0.2
+  - android-23
 before_script:
-  - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
-
+- echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
+- emulator -avd test -no-skin -no-audio -no-window &
+- android-wait-for-emulator
+- adb shell input keyevent 82 &
 before_install:
-  - echo yes | android update sdk --filter platform-tools --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter android-18 --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter sysimg-18 --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
-
-# Now using this: https://github.com/Stevie-Ray/apache-nginx-referral-spam-blacklist/blob/master/.travis.yml
-# Based on: http://stackoverflow.com/a/28230711/1700776
+- echo yes | android update sdk --filter platform-tools --no-ui --force > /dev/null
+- echo yes | android update sdk --filter android-18 --no-ui --force > /dev/null
+- echo yes | android update sdk --filter sysimg-18 --no-ui --force > /dev/null
+- echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
+- echo yes | android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
 before_deploy:
-  # rename apk
-  - export OLD_APK=app/build/outputs/apk/app-release-unsigned.apk
-  - export NEW_APK=app/build/outputs/apk/socko.apk
-  - mv  $OLD_APK $NEW_APK
-  # commit tags
-  - git config --global user.email "builds@travis-ci.com"
-  - git config --global user.name "Travis CI"
-  - export GIT_TAG=$TRAVIS_BRANCH-0.1.$TRAVIS_BUILD_NUMBER
-  - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
-  - git push -q https://${GH_TOKEN}@github.com/Vadammt/TravisTest --tags
-  - ls -aR
-
+- export OLD_APK=app/build/outputs/apk/app-release-unsigned.apk
+- export NEW_APK=app/build/outputs/apk/socko.apk
+- mv  $OLD_APK $NEW_APK
+- git config --global user.email "builds@travis-ci.com"
+- git config --global user.name "Travis CI"
+- export GIT_TAG=$TRAVIS_BRANCH-0.1.$TRAVIS_BUILD_NUMBER
+- git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
+- git push -q https://${GH_TOKEN}@github.com/Vadammt/TravisTest --tags
+- ls -aR
 deploy:
-  provider: releases
+- provider: releases
   api_key:
-    secure: ${GH_TOKEN}
-  file: $NEW_APK
+    secure: "${GH_TOKEN}"
+  file: "$NEW_APK"
   skip_cleanup: true
   on:
-    branch: build
     tags: false
-
+    branch: build
 branches:
-  except:
-    # Ignore the Auto-tagged branches
-    - /^*-v[0-9]/
+  except: /^*-v[0-9]/
+env:
+  global:
+    secure: XsWfm7Y3j5tnk0pHBkd5kieqgkxZpxeitqOstTgQ+q++Q3FuCE9vJTj/6PWHKn9kmlELkRZFUvvcWi1JpyRYUjmcqCW1QXD+iwoZpA3XY3MeuZQycPL3AEBxOd+X6/T6F71ZtvPioVlyRUVjnCm2e8xRy58kC5oFLeTpAxxVxN4R5Vq0N0bixiKvb3W3QR1vvfAvh0wO5HO3+Fer08jqr/ZYC0InnA7o3aUIGHx6HXFKYyoWns/QxpF0IH2HRgp4fozjcA3skWMlnf0okTq20AHnSz+P2zc3rp4SNYbEsyqEVIgOG/+cy3qo8dRlChP7GbUGhWXMlSu2R+vnom5VL1wQitPZy/Cpxhk2cvEuYgmCUthtz57nm9sw7Gjj9irSNXb8fagOCKxOd5gyo3oOyJw6VAhrWSC5KT1fchXxbTLbev8KPRKcq21g2T4wWzWD0zPJqVE1ssCNBV3fdfRkXp5aVv+1lU/2t0yDCLh65eFkQEg2mScaJjqCsoNoz6dNZFwqjgWPLmq7g8dgDPS+Q2Kgp4HQyNxtTVNU8MqMPP9fp7giv4CooMfxMk9zkmD9CS0jkFKnWO3bBXNKjcr7n/BOiWvhWZgSJ29jSthI8t6z4IFd15V55pZSIjyjoTAAT3GoNa05O5Nkg/LqV7ZFMj+06mSfuYQohUQ40kvpckc=
