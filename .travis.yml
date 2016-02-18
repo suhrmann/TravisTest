@@ -38,7 +38,7 @@ deploy:
   on:
     tags: false
 #    all_branches: true
-    branch: build
+    branch: builds
 branches:
   except: /^*-v[0-9]/
 
