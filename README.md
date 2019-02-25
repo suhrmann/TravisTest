@@ -4,3 +4,7 @@
 [![Github All Releases](https://img.shields.io/github/downloads/Vadammt/TravisTest/total.svg)](https://github.com/Vadammt/TravisTest)
 
 Ein Test repo für Travis-CI undso.
+
+--- 
+
+### Branch for testing Travis-CI for Android
