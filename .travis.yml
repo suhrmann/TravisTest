@@ -4,6 +4,7 @@ node_js:
   - "lts/*" # latest LTS Node.js release
 script:
   - vue-cli-service build
+  - vue-cli-service electron:build
 deploy:
   provider: releases
   api_key:
