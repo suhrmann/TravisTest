@@ -1,4 +1,10 @@
-# travistest
+# TravisTest
+
+---
+
+### Branch for testing Travis-CI with Electron
+
+
 
 ## Project setup
 ```
