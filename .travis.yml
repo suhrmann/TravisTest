@@ -5,11 +5,17 @@ node_js:
 script:
   - vue-cli-service build
   - vue-cli-service electron:build
+
+before_deploy:
+  - export VERSION=`node -e "console.log(require('./package.json').version);"`
+  - git tag $VERSION
+
 deploy:
   provider: releases
   api_key:
     secure: IQFi09Jq5XT2RB5q7Q5WaIhlkToYG6NNxYwWOu2XuRI+I+UVYFjquaTwLAFK8uuGCAe+HeQeSMC085dW0Y1cYHtcePRNntXd0O0bPTyYxupJ9ibGTLgusbgW8ZE81td5QQVSbGDmgN7m1XKlYsDqFiPLCg4SRV56gqxajgJ+1J+xilk8h15Qns39jzehVZlJfX3qrqs9BdA0fTcF2GhBnK4ZcDoxfk1AmyWtIz/xGhhvX6IIYgwotcG1B6hWZf6AOMycM43neD87Lo354UlU5bdwO924YhLgl5o3DmIkmt43sduH92a3rhbJPdZJwhg99q5oU2DWXswgAfb7RR8CmrzKUua/DvedTosLHmAZ5k1yTfVHLvaQdIuZgKnNxPeKa4nieJJ8JBif5ve/xOw/5K+5TYrE2bI2DKsaLttbMRAlOwFh5H9EtSB3gTV3wFhhfE7u4/lAGwRlriTDzd5L/1CxOJ4DIDcEau9zA46kC+ldhheWH5/nVL2QJX3zDi1TJHZSMGaHbBlWekofoSKwpLGBNjC67//bZeh9gVNTW4uLd0ZOh+UNpYjR15ptfhcy0RS0z0OTBkIR3c3fRuzhJSAV2uVQ6Lt2JapkIuAYkustXsCdvp2JHS64Llu9a2CkA327hewY4o5A10VS/fNd0G2cW33IN/jdIFFWuRyWoYc=
   file: ["dist_electron/travistest 0.1.0.AppImage", "dist_electron/travistest_0.1.0_amd64.snap"]
   skip_cleanup: true
+  name: $VERSION
   on:
     branch: electron
